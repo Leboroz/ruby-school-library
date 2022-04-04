@@ -1,10 +1,10 @@
-require_relative "person"
+require_relative 'person'
 
 class Student < Person
-  def initialize(name = "Unknown", parent_permission = true, age, classroom)
-    super(name, parent_permission, age)
+  def initialize(classroom, age, name = 'Unknown', parent_permission: true)
+    super(age, name, parent_permission)
     @classroom = classroom
-    self.is_of_age?
+    of_age?
   end
 
   def play_hooky
