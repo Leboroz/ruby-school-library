@@ -1,5 +1,5 @@
-require_relative "nameable"
-require_relative "decorator"
+require_relative 'nameable'
+require_relative 'decorator'
 # Public: Various methods useful for performing checking on people in a library.
 class Person < Nameable
   # Public: Gets/Sets the String name or age of the person.
@@ -15,6 +15,7 @@ class Person < Nameable
   # age - An Integer that describes the person's age.
   # parent_permition - A Boolean that describes parent permition status.
   def initialize(age, name = 'Unknown', parent_permition: true)
+    super
     @id = rand(10_000)
     @name = name
     @age = age
@@ -41,9 +42,3 @@ class Person < Nameable
     @age >= 18
   end
 end
-person = Person.new(22, 'maximilianus')
-  person.correct_name
-  capitalizedPerson = CapitalizeDecorator.new(person)
-p  capitalizedPerson.correct_name
-  capitalizedTrimmedPerson = TrimmerDecorator.new(capitalizedPerson)
-p  capitalizedTrimmedPerson.correct_name
