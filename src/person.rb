@@ -1,5 +1,7 @@
+require_relative "nameable"
+require_relative "decorator"
 # Public: Various methods useful for performing checking on people in a library.
-class Person
+class Person < Nameable
   # Public: Gets/Sets the String name or age of the person.
   attr_accessor :name, :age
 
@@ -19,6 +21,10 @@ class Person
     @parent_permition = parent_permition
   end
 
+  def correct_name
+    @name
+  end
+
   # Public: This method describes the person's permittion status to use the services
   #
   # Returns true if the person is not under age or it has parent_permition
@@ -35,3 +41,9 @@ class Person
     @age >= 18
   end
 end
+person = Person.new(22, 'maximilianus')
+  person.correct_name
+  capitalizedPerson = CapitalizeDecorator.new(person)
+p  capitalizedPerson.correct_name
+  capitalizedTrimmedPerson = TrimmerDecorator.new(capitalizedPerson)
+p  capitalizedTrimmedPerson.correct_name
