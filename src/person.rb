@@ -1,5 +1,7 @@
+require_relative 'nameable'
+require_relative 'decorator'
 # Public: Various methods useful for performing checking on people in a library.
-class Person
+class Person < Nameable
   # Public: Gets/Sets the String name or age of the person.
   attr_accessor :name, :age
 
@@ -13,10 +15,15 @@ class Person
   # age - An Integer that describes the person's age.
   # parent_permition - A Boolean that describes parent permition status.
   def initialize(age, name = 'Unknown', parent_permition: true)
+    super
     @id = rand(10_000)
     @name = name
     @age = age
     @parent_permition = parent_permition
+  end
+
+  def correct_name
+    @name
   end
 
   # Public: This method describes the person's permittion status to use the services
