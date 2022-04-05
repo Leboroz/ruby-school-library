@@ -15,7 +15,7 @@ class Person < Nameable
   # age - An Integer that describes the person's age.
   # parent_permition - A Boolean that describes parent permition status.
   def initialize(age, name = 'Unknown', parent_permition: true)
-    super
+    super()
     @id = rand(10_000)
     @name = name
     @age = age
