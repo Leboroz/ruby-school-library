@@ -3,7 +3,7 @@ require_relative 'decorator'
 # Public: Various methods useful for performing checking on people in a library.
 class Person < Nameable
   # Public: Gets/Sets the String name or age of the person.
-  attr_accessor :name, :age
+  attr_accessor :name, :age, :rentals
 
   # Public: Returns the Integer age of the person.
   attr_reader :id
@@ -20,6 +20,7 @@ class Person < Nameable
     @name = name
     @age = age
     @parent_permition = parent_permition
+    @rentals = []
   end
 
   def correct_name
