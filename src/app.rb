@@ -11,7 +11,7 @@ class App
 3 - Create a person.
 4 - Create a book.
 5 - Create a rental.
-6 - List all rentals for a given person id.
+6 - List all rentals for a given person INDEX.
 7 - Quit".freeze
   def initialize
     @books = []
@@ -126,6 +126,7 @@ class App
     print_list('1')
     print 'Input Index: '
     book_index = Integer(gets.chomp)
+    puts @people
     @rentals.push(Rental.new(
                     @date,
                     @books[book_index],
