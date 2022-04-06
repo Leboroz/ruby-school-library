@@ -83,7 +83,9 @@ class App
     list = item == 'books' ? @books : @people
     unless list.empty?
       puts "These are the #{item} stored: "
-      list.each_with_index { |obj, index| puts "index: #{index} - #{obj.to_yaml.sub(%r{---( &\d*)? !ruby/object:}, '')}\n" }
+      list.each_with_index do |obj, index|
+        puts "index: #{index} - #{obj.to_yaml.sub(%r{---( &\d*)? !ruby/object:}, '')}\n"
+      end
     end
     puts "There are no #{item}" if list.empty?
   end
@@ -119,16 +121,16 @@ class App
     print_list('2')
     print 'Input Index: '
     person_index = Integer(gets.chomp)
-    puts "******************************"
+    puts '******************************'
     puts 'Choose book by Index'
     print_list('1')
     print 'Input Index: '
     book_index = Integer(gets.chomp)
     @rentals.push(Rental.new(
-                     @date,
-                     @books[book_index],
-                     @people[person_index]
-                   ))
+                    @date,
+                    @books[book_index],
+                    @people[person_index]
+                  ))
   end
 end
 
