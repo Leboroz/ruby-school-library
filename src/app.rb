@@ -126,6 +126,7 @@ class App
     print_list('1')
     print 'Input Index: '
     book_index = Integer(gets.chomp)
+    puts @people
     @rentals.push(Rental.new(
                     @date,
                     @books[book_index],
