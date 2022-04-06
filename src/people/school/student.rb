@@ -1,4 +1,4 @@
-require_relative 'person'
+require_relative '../person'
 
 # Public: Subclass of person. Creates an instance of student.
 class Student < Person

@@ -1,5 +1,5 @@
-require_relative 'nameable'
-require_relative 'decorator'
+require_relative 'utils/nameable'
+require_relative 'utils/decorator'
 # Public: Various methods useful for performing checking on people in a library.
 class Person < Nameable
   # Public: Gets/Sets the String name or age of the person.

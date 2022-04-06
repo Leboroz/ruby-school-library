@@ -1,5 +1,4 @@
 require_relative 'student'
-require 'yaml'
 
 class Classroom
   attr_accessor :label, :students
