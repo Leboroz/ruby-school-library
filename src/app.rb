@@ -20,7 +20,7 @@ class App
     @date = Time.new.strftime('%Y-%m-%d')
   end
 
-  def self.run
+  def run
     print "Select an option(number) to continue.\n"
 
     loop do
@@ -44,20 +44,19 @@ class App
     end
   end
 
-  def self.create_book
+  def create_book
     puts 'Input title and author'
     print 'Title: '
     title = gets.chomp
     puts ' '
     print 'Author: '
     author = gets.chomp
-    current = @@books.length
-    create_book(title, author)
-    puts current < @@books.length ? 'Book added' : 'Error'
-    @@books.push(Book.new(title, author))
+    current = @books.length
+    @books.push(Book.new(title, author))
+    puts current < @books.length ? 'Book added' : 'Error'
   end
 
-  def self.create_person_input
+  def create_person_input
     puts 'Press 1 for student or 2 for teacher'
     print 'Option: '
     case gets.chomp
@@ -78,61 +77,64 @@ class App
     end
   end
 
-  def self.print_list(item)
+  def print_list(item)
     options = { '1' => 'books', '2' => 'people' }
     item = options[item]
-    list = item == 'books' ? @@books : @@people
+    list = item == 'books' ? @books : @people
     unless list.empty?
       puts "These are the #{item} stored: "
-      list.each { |obj, index| puts "index: #{index} - #{obj.to_yaml.sub(%r{---( &\d*)? !ruby/object:}, '')}\n" }
+      list.each_with_index { |obj, index| puts "index: #{index} - #{obj.to_yaml.sub(%r{---( &\d*)? !ruby/object:}, '')}\n" }
     end
     puts "There are no #{item}" if list.empty?
   end
 
-  def self.create_person
+  def create_person
     puts 'Input name'
     print 'Name: '
     name = gets.chomp
     puts 'Input age'
     print 'Age: '
     age = Integer(gets.chomp)
-    @@people.push(yield(age, name))
+    @people.push(yield(age, name))
   end
 
-  def self.clear
+  def clear
     system 'clear'
     system 'cls'
   end
 
-  def self.print_rental_by_person_id
+  def print_rental_by_person_id
     puts 'Select a person by index'
     print_list('people')
     print 'Input Index: '
     index = Integer(gets.chomp)
-    @@people[index].rentals.each do |rental|
+    clear
+    @people[index].rentals.each do |rental|
       puts rental.to_yaml.sub(%r{---( &\d*)? !ruby/object:}, '')
     end
   end
 
-  def self.create_rental
-    puts 'Choose person by ID'
-    print_list('people')
-    print 'Input id: '
-    person_id = Integer(gets.chomp)
-    puts 'Choose book by ID'
-    print_list('books')
-    print 'Input id: '
-    book_id = Integer(gets.chomp)
-    @@rentals.push(Rental.new(
-                     @@date,
-                     @@books.select { |book| book.id == book_id }[0],
-                     @@people.select { |person| person.id == person_id }[0]
+  def create_rental
+    puts 'Choose person by Index'
+    print_list('2')
+    print 'Input Index: '
+    person_index = Integer(gets.chomp)
+    puts "******************************"
+    puts 'Choose book by Index'
+    print_list('1')
+    print 'Input Index: '
+    book_index = Integer(gets.chomp)
+    @rentals.push(Rental.new(
+                     @date,
+                     @books[book_index],
+                     @people[person_index]
                    ))
   end
 end
 
 def main
-  App.run
+  app = App.new
+  app.run
 end
 
 main
