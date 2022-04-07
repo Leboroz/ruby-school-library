@@ -14,4 +14,8 @@ class Teacher < Person
     super(age, name)
     @specialization = specialization
   end
+
+  def to_s
+    "[Teacher] - #{super.to_s}, specialization: #{specialization}"
+  end
 end
