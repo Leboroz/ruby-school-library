@@ -5,8 +5,7 @@
 > Tool that records what books are in the library and who borrows them. The app allows you to add new students or teachers, new books, and save records of who borrowed a given book and when.
 
 
-https://user-images.githubusercontent.com/39866846/162034751-1976e34b-0205-41c6-af7e-0ed211ec1dc6.mp4
-
+https://user-images.githubusercontent.com/39866846/162330007-b8a7ceb9-6e36-42df-89b6-0a7317c420e8.mp4
 
 
 ## Built With
