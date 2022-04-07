@@ -8,4 +8,8 @@ class Rental
     @book = book
     @date = date
   end
+
+  def to_s
+    "Rental: book: #{book.title} belongs to #{person.name} until #{date}"
+  end
 end

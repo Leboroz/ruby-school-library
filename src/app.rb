@@ -2,8 +2,6 @@ require_relative 'library/book'
 require_relative 'library/rental'
 require_relative 'people/school/student'
 require_relative 'people/school/teacher'
-require 'date'
-require 'yaml'
 
 class App
   MENU = "1 - List all books.
@@ -16,8 +14,6 @@ class App
   def initialize
     @books = []
     @people = []
-    @rentals = []
-    @date = Time.new.strftime('%Y-%m-%d')
   end
 
   def run
@@ -53,6 +49,7 @@ class App
     author = gets.chomp
     current = @books.length
     @books.push(Book.new(title, author))
+    puts ""
     puts current < @books.length ? 'Book added' : 'Error'
   end
 
@@ -75,6 +72,8 @@ class App
         Teacher.new(specialization, a, n)
       end
     end
+    puts ""
+    puts "Person Created!"
   end
 
   def print_list(item)
@@ -83,9 +82,7 @@ class App
     list = item == 'books' ? @books : @people
     unless list.empty?
       puts "These are the #{item} stored: "
-      list.each_with_index do |obj, index|
-        puts "index: #{index} - #{obj.to_yaml.sub(%r{---( &\d*)? !ruby/object:}, '')}\n"
-      end
+      list.each_with_index { |item, i| puts "index: #{i} #{item}" }
     end
     puts "There are no #{item}" if list.empty?
   end
@@ -111,9 +108,8 @@ class App
     print 'Input Index: '
     index = Integer(gets.chomp)
     clear
-    @people[index].rentals.each do |rental|
-      puts rental.to_yaml.sub(%r{---( &\d*)? !ruby/object:}, '')
-    end
+    puts ""
+    puts @people[index].rentals
   end
 
   def create_rental
@@ -126,12 +122,15 @@ class App
     print_list('1')
     print 'Input Index: '
     book_index = Integer(gets.chomp)
-    puts @people
-    @rentals.push(Rental.new(
-                    @date,
-                    @books[book_index],
-                    @people[person_index]
-                  ))
+    puts "Set date(yyyy/mm/dd)"
+    date = gets.chomp
+    Rental.new(
+                date,
+                @books[book_index],
+                @people[person_index]
+              )
+    puts ""
+    puts "Rental Created!"
   end
 end
 

@@ -23,6 +23,10 @@ class Student < Person
     "¯\(ツ)/¯"
   end
 
+  def to_s
+    "[Student] - #{super.to_s}, parent permition: #{@parent_permition ? "Yes" : "No"}"
+  end
+
   def belongs_to(classroom)
     @classroom = classroom if @classroom == 'Not assigned'
     classroom.add_student(self) unless classroom.students.index(self)
