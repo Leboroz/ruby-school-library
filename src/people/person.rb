@@ -34,6 +34,10 @@ class Person < Nameable
     of_age? || @parent_permition
   end
 
+  def to_s 
+    "id: #{id}, name: #{name}, age: #{age}" 
+  end
+
   private
 
   # Internal: This method shows false if the person is under age

@@ -11,4 +11,8 @@ class Book
   def add_rental(rental)
     @rentals.push(rental)
   end
+
+  def to_s
+    " - Title: #{title}, author: #{author}"
+  end
 end
